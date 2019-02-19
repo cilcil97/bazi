@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.service;import com.EsportLeagueStats.ESLS.model.Liga;import java.util.List;public interface LigaServiceInterface {    List<Liga> findAllLiga();    Liga findLigaById(int id);    Liga addLiga(String lKontinent, String lIme, String mesto_na_odrzuvanje);}

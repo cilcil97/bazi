@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.persistance;import com.EsportLeagueStats.ESLS.model.StatistikaNaTim;import org.springframework.data.jpa.repository.JpaRepository;import org.springframework.data.repository.CrudRepository;public interface StatistikaNaTimRepository extends JpaRepository<StatistikaNaTim,Integer> {}

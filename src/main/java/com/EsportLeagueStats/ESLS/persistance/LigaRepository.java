@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.persistance;import com.EsportLeagueStats.ESLS.model.Liga;import org.springframework.data.jpa.repository.JpaRepository;import org.springframework.data.repository.CrudRepository;public interface LigaRepository extends JpaRepository<Liga,Integer> {}

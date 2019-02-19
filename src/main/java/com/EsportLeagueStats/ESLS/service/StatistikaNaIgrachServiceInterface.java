@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.service;import com.EsportLeagueStats.ESLS.model.StatistikaNaIgrach;import java.util.List;public interface StatistikaNaIgrachServiceInterface {    Iterable<StatistikaNaIgrach> findAllIgrachStat();    StatistikaNaIgrach findById(int id);}

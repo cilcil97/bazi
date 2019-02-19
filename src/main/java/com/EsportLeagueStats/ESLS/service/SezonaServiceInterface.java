@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.service;import com.EsportLeagueStats.ESLS.model.Sezona;import java.util.List;public interface SezonaServiceInterface {    List<Sezona> findAllSezona();    Sezona findSezonaById(int id);    Sezona addSezona(String kraenDatum,String pocetenDatum);}

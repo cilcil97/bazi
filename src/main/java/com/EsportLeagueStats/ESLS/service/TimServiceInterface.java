@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.service;import com.EsportLeagueStats.ESLS.model.Liga;import com.EsportLeagueStats.ESLS.model.Tim;import java.util.List;public interface TimServiceInterface {    List<Tim> findAllTimovi();    Tim findTimById(int id);    Tim addTim(String t_ime, String t_logo, int lid);}
