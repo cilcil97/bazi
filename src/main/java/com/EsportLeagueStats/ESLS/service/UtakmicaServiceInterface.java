@@ -1,1 +1,0 @@
-package com.EsportLeagueStats.ESLS.service;import com.EsportLeagueStats.ESLS.model.Utakmica;import java.util.List;public interface UtakmicaServiceInterface {    Iterable<Utakmica> findAllUtakmica();    Utakmica findUtakmicaById(int id);}

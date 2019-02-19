@@ -36,6 +36,11 @@ public class Finale implements Serializable {
 	public Finale() {
 	}
 
+	public Finale(FinalePK  id) {
+
+		this.id=id;
+	}
+
 	public FinalePK getId() {
 		return this.id;
 	}

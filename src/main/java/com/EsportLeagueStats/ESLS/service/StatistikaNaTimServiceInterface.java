@@ -1,1 +1,0 @@
-package com.EsportLeagueStats.ESLS.service;import com.EsportLeagueStats.ESLS.model.StatistikaNaTim;import java.util.List;public interface StatistikaNaTimServiceInterface {    Iterable<StatistikaNaTim> findAllStatsTim();    StatistikaNaTim findById(int id);}
