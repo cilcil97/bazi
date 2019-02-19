@@ -7,10 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-/**
- * The persistent class for the sezona database table.
- * 
- */
+
 @Entity
 public class Sezona implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,17 +22,17 @@ public class Sezona implements Serializable {
 	@Column(name="poceten_datum")
 	private String pocetenDatum;
 
-	//bi-directional many-to-one association to Finale
+
 	@OneToMany(mappedBy="sezona")
 	@JsonIgnore
 	private List<Finale> finales;
 
-	//bi-directional many-to-one association to Liga
+
 	@ManyToOne
 	@JoinColumn(name="lid",insertable = false,updatable = false)
 	private Liga liga1;
 
-	//bi-directional many-to-one association to Liga
+
 	@ManyToOne
 	@JoinColumn(name="lid")
 	private Liga liga2;

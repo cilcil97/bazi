@@ -1,13 +1,11 @@
 package com.EsportLeagueStats.ESLS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 
-/**
- * The persistent class for the statistika_na_igrach database table.
- * 
- */
 @Entity
 @Table(name="statistika_na_igrach")
 public class StatistikaNaIgrach implements Serializable {
@@ -39,12 +37,14 @@ public class StatistikaNaIgrach implements Serializable {
 	@Column(name="prisustvo_na_vardovi")
 	private Integer prisustvoNaVardovi;
 
-	//bi-directional one-to-one association to StatistikaNaIgrach
+
 	@OneToOne
+	@JsonIgnore
 	@JoinColumn(name="iid")
 	private StatistikaNaIgrach statistikaNaIgrach1;
 
 	//bi-directional one-to-one association to StatistikaNaIgrach
+	@JsonIgnore
 	@OneToOne(mappedBy="statistikaNaIgrach1")
 	private StatistikaNaIgrach statistikaNaIgrach2;
 

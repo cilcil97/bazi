@@ -4,13 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-/**
- * The primary key class for the menuvaattim database table.
- * 
- */
+
 @Embeddable
 public class MenuvaattimPK implements Serializable {
-	//default serial version id, required for serializable classes.
+
 	private static final long serialVersionUID = 1L;
 
 	@Column(insertable=false, updatable=false)

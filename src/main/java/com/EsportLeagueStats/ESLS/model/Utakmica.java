@@ -1,5 +1,7 @@
 package com.EsportLeagueStats.ESLS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,10 +25,12 @@ public class Utakmica implements Serializable {
 	private String vremeTraenje;
 
 	//bi-directional many-to-one association to Finale
+	@JsonIgnore
 	@OneToMany(mappedBy="utakmica")
 	private List<Finale> finales;
 
 	//bi-directional many-to-one association to Igraat
+
 	@OneToMany(mappedBy="utakmica")
 	private List<Igraat> igraats;
 
@@ -36,6 +40,12 @@ public class Utakmica implements Serializable {
 	private Sezona sezona;
 
 	public Utakmica() {
+	}
+
+	public Utakmica(String pobednik, String vremeTraenje, Sezona sezona) {
+		this.pobednik = pobednik;
+		this.vremeTraenje = vremeTraenje;
+		this.sezona = sezona;
 	}
 
 	public Integer getUid() {
@@ -61,6 +71,7 @@ public class Utakmica implements Serializable {
 	public void setVremeTraenje(String vremeTraenje) {
 		this.vremeTraenje = vremeTraenje;
 	}
+
 
 	public List<Finale> getFinales() {
 		return this.finales;
