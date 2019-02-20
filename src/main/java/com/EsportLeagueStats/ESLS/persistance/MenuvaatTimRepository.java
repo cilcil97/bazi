@@ -1,0 +1,1 @@
+package com.EsportLeagueStats.ESLS.persistance;import com.EsportLeagueStats.ESLS.model.Menuvaattim;import com.EsportLeagueStats.ESLS.model.MenuvaattimPK;import org.springframework.data.jpa.repository.JpaRepository;public interface MenuvaatTimRepository extends JpaRepository<Menuvaattim, MenuvaattimPK> {    }

@@ -30,11 +30,11 @@ public class Utakmica implements Serializable {
 	private List<Finale> finales;
 
 	//bi-directional many-to-one association to Igraat
-
 	@OneToMany(mappedBy="utakmica")
 	private List<Igraat> igraats;
 
 	//bi-directional many-to-one association to Sezona
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="seid")
 	private Sezona sezona;

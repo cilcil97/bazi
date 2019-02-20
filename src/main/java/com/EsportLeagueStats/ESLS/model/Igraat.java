@@ -1,5 +1,7 @@
 package com.EsportLeagueStats.ESLS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,16 +19,19 @@ public class Igraat implements Serializable {
 
 	//bi-directional many-to-one association to Tim
 	@ManyToOne
+
 	@JoinColumn(name="tid1",updatable = false,insertable = false)
 	private Tim tim1;
 
 	//bi-directional many-to-one association to Tim
 	@ManyToOne
+
 	@JoinColumn(name="tid2",updatable = false,insertable = false)
 	private Tim tim2;
 
 	//bi-directional many-to-one association to Utakmica
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="uid",updatable = false,insertable = false)
 	private Utakmica utakmica;
 

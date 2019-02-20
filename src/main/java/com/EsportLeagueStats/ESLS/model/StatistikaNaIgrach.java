@@ -38,6 +38,17 @@ public class StatistikaNaIgrach implements Serializable {
 	private Integer prisustvoNaVardovi;
 
 
+	public StatistikaNaIgrach(Integer kda, Integer nadigruvanja, Integer napravenaSteta, Integer poeniVo10Min, Integer primenaSteta, Integer prinudeniGreski, Integer prisustvoNaSoigrachi, Integer prisustvoNaVardovi) {
+		this.kda = kda;
+		this.nadigruvanja = nadigruvanja;
+		this.napravenaSteta = napravenaSteta;
+		this.poeniVo10Min = poeniVo10Min;
+		this.primenaSteta = primenaSteta;
+		this.prinudeniGreski = prinudeniGreski;
+		this.prisustvoNaSoigrachi = prisustvoNaSoigrachi;
+		this.prisustvoNaVardovi = prisustvoNaVardovi;
+	}
+
 	@OneToOne
 	@JsonIgnore
 	@JoinColumn(name="iid")

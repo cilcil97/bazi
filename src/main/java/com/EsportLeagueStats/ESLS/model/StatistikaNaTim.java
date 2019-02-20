@@ -1,5 +1,7 @@
 package com.EsportLeagueStats.ESLS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -24,6 +26,7 @@ public class StatistikaNaTim implements Serializable {
 	private Integer poeniVo10Min;
 
 	//bi-directional one-to-one association to Tim
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="tid")
 	private Tim tim;

@@ -1,5 +1,7 @@
 package com.EsportLeagueStats.ESLS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,21 +21,34 @@ public class Finale implements Serializable {
 	private String fMestoNaOdrzuvanje;
 
 	//bi-directional many-to-one association to Sezona
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="seid")
+
 	private Sezona sezona;
 
 	//bi-directional many-to-one association to Tim
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="tid")
+
 	private Tim tim;
 
 	//bi-directional many-to-one association to Utakmica
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="uid",insertable = false,updatable=false)
+
 	private Utakmica utakmica;
 
 	public Finale() {
+	}
+
+	public Finale(String fMestoNaOdrzuvanje, Sezona sezona, Tim tim, Utakmica utakmica) {
+		this.fMestoNaOdrzuvanje = fMestoNaOdrzuvanje;
+		this.sezona = sezona;
+		this.tim = tim;
+		this.utakmica = utakmica;
 	}
 
 	public Finale(FinalePK  id) {
