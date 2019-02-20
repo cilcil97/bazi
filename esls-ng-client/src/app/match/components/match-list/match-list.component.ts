@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GenericTableComponent} from "../../../shared/components/generic-table/generic-table.component";
+import {Match} from "../../../shared/domain/match";
 
 @Component({
   selector: 'app-match-list',

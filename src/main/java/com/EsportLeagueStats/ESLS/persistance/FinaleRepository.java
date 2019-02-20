@@ -1,1 +1,0 @@
-package com.EsportLeagueStats.ESLS.persistance;import com.EsportLeagueStats.ESLS.model.Finale;import com.EsportLeagueStats.ESLS.model.FinalePK;import org.springframework.data.jpa.repository.JpaRepository;public interface FinaleRepository extends JpaRepository<Finale, FinalePK> {}

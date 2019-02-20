@@ -1,1 +1,0 @@
-package com.EsportLeagueStats.ESLS.persistance;import com.EsportLeagueStats.ESLS.model.Igraat;import com.EsportLeagueStats.ESLS.model.IgraatPK;import org.springframework.data.jpa.repository.JpaRepository;public interface IgraatRepository extends JpaRepository<Igraat, IgraatPK> {}

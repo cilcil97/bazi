@@ -1,50 +1,62 @@
 package com.EsportLeagueStats.ESLS.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-
-/**
- * The persistent class for the statistika_na_tim database table.
- * 
- */
 @Entity
-@Table(name="statistika_na_tim")
-public class StatistikaNaTim implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+@Table(schema = "project", name="statistika_na_tim")
+public class StatistikaNaTim {
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer tid;
+	private Integer id;
 
 	@Column(name="br_pobedi")
-	private Integer brPobedi;
+	private Long brPobedi;
 
 	@Column(name="poeni_vo_10_min")
 	private Integer poeniVo10Min;
 
 	//bi-directional one-to-one association to Tim
-	@OneToOne
-	@JoinColumn(name="tid")
+	@ManyToOne
+	@JoinColumn(name="tim_id")
 	private Tim tim;
+
+	@ManyToOne
+	@JoinColumn(name = "sezona_id")
+	private Sezona sezona;
 
 	public StatistikaNaTim() {
 	}
 
-	public Integer getTid() {
-		return this.tid;
-	}
-
-	public void setTid(Integer tid) {
-		this.tid = tid;
-	}
-
-	public Integer getBrPobedi() {
-		return this.brPobedi;
-	}
-
-	public void setBrPobedi(Integer brPobedi) {
+	public StatistikaNaTim(Long brPobedi, Integer poeniVo10Min, Tim tim, Sezona sezona) {
 		this.brPobedi = brPobedi;
+		this.poeniVo10Min = poeniVo10Min;
+		this.tim = tim;
+		this.sezona = sezona;
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Long getBrPobedi() {
+		return brPobedi;
+	}
+
+	public void setBrPobedi(Long brPobedi) {
+		this.brPobedi = brPobedi;
+	}
+
+	public Sezona getSezona() {
+		return sezona;
+	}
+
+	public void setSezona(Sezona sezona) {
+		this.sezona = sezona;
 	}
 
 	public Integer getPoeniVo10Min() {

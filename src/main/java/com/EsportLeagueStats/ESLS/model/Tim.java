@@ -3,213 +3,122 @@ package com.EsportLeagueStats.ESLS.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
-
-/**
- * The persistent class for the tim database table.
- * 
- */
 @Entity
-public class Tim implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+@Table(schema = "project", name = "tim")
+public class Tim {
 	@Id
+    @Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer tid;
+	private Integer id;
 
-	@Column(name="t_ime")
-	private String tIme;
+	@Column(name="ime")
+	private String ime;
 
-	private String tlogo;
+	@Column(name = "logo")
+	private String logo;
 
-	//bi-directional many-to-one association to Finale
 	@OneToMany(mappedBy="tim")
 	@JsonIgnore
-	private List<Finale> finales;
+	private List<MenuvaatTim> menuvaatTims;
 
-	//bi-directional many-to-many association to Igrachi
-	@ManyToMany
-	@JoinTable(
-		name="formiraat"
-		, joinColumns={
-			@JoinColumn(name="tid")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="iid")
-			}
-		)
-	@JsonIgnore
-	private List<Igrachi> igrachis;
-
-	//bi-directional many-to-one association to Igraat
-	@JsonIgnore
-	@OneToMany(mappedBy="tim1")
-	private List<Igraat> igraats1;
-
-	//bi-directional many-to-one association to Igraat
-	@OneToMany(mappedBy="tim2")
-	@JsonIgnore
-	private List<Igraat> igraats2;
-
-	//bi-directional many-to-one association to Menuvaattim
+    @JsonIgnore
 	@OneToMany(mappedBy="tim")
-	@JsonIgnore
-	private List<Menuvaattim> menuvaattims;
+	private List<StatistikaNaTim> statistikaNaTim;
 
-	//bi-directional one-to-one association to StatistikaNaTim
-	@OneToOne(mappedBy="tim")
-	private StatistikaNaTim statistikaNaTim;
-
-	//bi-directional many-to-one association to Liga
 	@ManyToOne
-	@JoinColumn(name="lid")
+	@JoinColumn(name="liga_id")
 	private Liga liga;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "tim")
+	private List<Formiraat> formiraat;
+
+	@OneToMany(mappedBy = "gubitnik")
+	private List<Utakmica> izgubeniUtakmici;
+
+    @OneToMany(mappedBy = "pobednik")
+    private List<Utakmica> pobedeniUtakmici;
 
 	public Tim() {
 	}
 
-    public Tim(String tIme, String tlogo, Liga liga) {
-		this.tIme=tIme;
-		this.tlogo=tlogo;
+    public Tim(String ime, String logo, Liga liga) {
+		this.ime = ime;
+		this.logo = logo;
 		this.liga=liga;
     }
 
-    public Integer getTid() {
-		return this.tid;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setTid(Integer tid) {
-		this.tid = tid;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getTIme() {
-		return this.tIme;
-	}
+    public String getIme() {
+        return ime;
+    }
 
-	public void setTIme(String tIme) {
-		this.tIme = tIme;
-	}
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
 
-	public String getTlogo() {
-		return this.tlogo;
-	}
+    public String getLogo() {
+        return logo;
+    }
 
-	public void setTlogo(String tlogo) {
-		this.tlogo = tlogo;
-	}
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
-	public List<Finale> getFinales() {
-		return this.finales;
-	}
+    public List<MenuvaatTim> getMenuvaatTims() {
+        return menuvaatTims;
+    }
 
-	public void setFinales(List<Finale> finales) {
-		this.finales = finales;
-	}
+    public void setMenuvaatTims(List<MenuvaatTim> menuvaatTims) {
+        this.menuvaatTims = menuvaatTims;
+    }
 
-	public Finale addFinale(Finale finale) {
-		getFinales().add(finale);
-		finale.setTim(this);
+    public List<StatistikaNaTim> getStatistikaNaTim() {
+        return statistikaNaTim;
+    }
 
-		return finale;
-	}
+    public void setStatistikaNaTim(List<StatistikaNaTim> statistikaNaTim) {
+        this.statistikaNaTim = statistikaNaTim;
+    }
 
-	public Finale removeFinale(Finale finale) {
-		getFinales().remove(finale);
-		finale.setTim(null);
+    public Liga getLiga() {
+        return liga;
+    }
 
-		return finale;
-	}
+    public void setLiga(Liga liga) {
+        this.liga = liga;
+    }
 
-	public List<Igrachi> getIgrachis() {
-		return this.igrachis;
-	}
+    public List<Formiraat> getFormiraat() {
+        return formiraat;
+    }
 
-	public void setIgrachis(List<Igrachi> igrachis) {
-		this.igrachis = igrachis;
-	}
+    public void setFormiraat(List<Formiraat> formiraat) {
+        this.formiraat = formiraat;
+    }
 
-	public List<Igraat> getIgraats1() {
-		return this.igraats1;
-	}
+    public List<Utakmica> getIzgubeniUtakmici() {
+        return izgubeniUtakmici;
+    }
 
-	public void setIgraats1(List<Igraat> igraats1) {
-		this.igraats1 = igraats1;
-	}
+    public void setIzgubeniUtakmici(List<Utakmica> izgubeniUtakmici) {
+        this.izgubeniUtakmici = izgubeniUtakmici;
+    }
 
-	public Igraat addIgraats1(Igraat igraats1) {
-		getIgraats1().add(igraats1);
-		igraats1.setTim1(this);
+    public List<Utakmica> getPobedeniUtakmici() {
+        return pobedeniUtakmici;
+    }
 
-		return igraats1;
-	}
-
-	public Igraat removeIgraats1(Igraat igraats1) {
-		getIgraats1().remove(igraats1);
-		igraats1.setTim1(null);
-
-		return igraats1;
-	}
-
-	public List<Igraat> getIgraats2() {
-		return this.igraats2;
-	}
-
-	public void setIgraats2(List<Igraat> igraats2) {
-		this.igraats2 = igraats2;
-	}
-
-	public Igraat addIgraats2(Igraat igraats2) {
-		getIgraats2().add(igraats2);
-		igraats2.setTim2(this);
-
-		return igraats2;
-	}
-
-	public Igraat removeIgraats2(Igraat igraats2) {
-		getIgraats2().remove(igraats2);
-		igraats2.setTim2(null);
-
-		return igraats2;
-	}
-
-	public List<Menuvaattim> getMenuvaattims() {
-		return this.menuvaattims;
-	}
-
-	public void setMenuvaattims(List<Menuvaattim> menuvaattims) {
-		this.menuvaattims = menuvaattims;
-	}
-
-	public Menuvaattim addMenuvaattim(Menuvaattim menuvaattim) {
-		getMenuvaattims().add(menuvaattim);
-		menuvaattim.setTim(this);
-
-		return menuvaattim;
-	}
-
-	public Menuvaattim removeMenuvaattim(Menuvaattim menuvaattim) {
-		getMenuvaattims().remove(menuvaattim);
-		menuvaattim.setTim(null);
-
-		return menuvaattim;
-	}
-
-	public StatistikaNaTim getStatistikaNaTim() {
-		return this.statistikaNaTim;
-	}
-
-	public void setStatistikaNaTim(StatistikaNaTim statistikaNaTim) {
-		this.statistikaNaTim = statistikaNaTim;
-	}
-
-	public Liga getLiga() {
-		return this.liga;
-	}
-
-	public void setLiga(Liga liga) {
-		this.liga = liga;
-	}
-
+    public void setPobedeniUtakmici(List<Utakmica> pobedeniUtakmici) {
+        this.pobedeniUtakmici = pobedeniUtakmici;
+    }
 }

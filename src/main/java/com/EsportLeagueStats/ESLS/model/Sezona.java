@@ -3,135 +3,82 @@ package com.EsportLeagueStats.ESLS.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 
-
 @Entity
-public class Sezona implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(schema = "project", name = "sezona")
+public class Sezona {
+    @Id
+    @Column(name = "year")
+    private Integer year;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer seid;
+    @Column(name = "kraen_datum")
+    private LocalDate kraenDatum;
 
-	@Column(name="kraen_datum")
-	private String kraenDatum;
+    @Column(name = "poceten_datum")
+    private LocalDate pocetenDatum;
 
-	@Column(name="poceten_datum")
-	private String pocetenDatum;
+    @OneToMany(mappedBy = "sezona")
+    @JsonIgnore
+    private List<StatistikaNaIgrach> statistikaNaIgrachi;
 
+    @OneToMany(mappedBy = "sezona")
+    @JsonIgnore
+    private List<StatistikaNaTim> statistikaNaTimovi;
 
-	@OneToMany(mappedBy="sezona")
-	@JsonIgnore
-	private List<Finale> finales;
+    @OneToMany(mappedBy = "sezona")
+    @JsonIgnore
+    private List<LigaSezona> ligaSoSezoni;
 
+    @OneToMany(mappedBy = "sezona")
+    @JsonIgnore
+    private List<Formiraat> formiraat;
 
-	@ManyToOne
-	@JoinColumn(name="lid",insertable = false,updatable = false)
-	private Liga liga1;
+    public Sezona() {
+    }
 
+    public Sezona(int year, LocalDate kraenDatum, LocalDate pocetenDatum) {
+        this.year = year;
+        this.kraenDatum = kraenDatum;
+        this.pocetenDatum = pocetenDatum;
+    }
 
-	@ManyToOne
-	@JoinColumn(name="lid")
-	private Liga liga2;
+    public Integer getYear() {
+        return year;
+    }
 
-	//bi-directional many-to-one association to Utakmica
-	@OneToMany(mappedBy="sezona")
-	@JsonIgnore
-	private List<Utakmica> utakmicas;
+    public void setYear(Integer year) {
+        this.year = year;
+    }
 
-	public Sezona() {
-	}
+    public LocalDate getKraenDatum() {
+        return kraenDatum;
+    }
 
-	public Sezona(String kraenDatum, String pocetenDatum) {
-		this.kraenDatum=kraenDatum;
-		this.pocetenDatum=pocetenDatum;
-	}
+    public void setKraenDatum(LocalDate kraenDatum) {
+        this.kraenDatum = kraenDatum;
+    }
 
-	public Integer getSeid() {
-		return this.seid;
-	}
+    public LocalDate getPocetenDatum() {
+        return pocetenDatum;
+    }
 
-	public void setSeid(Integer seid) {
-		this.seid = seid;
-	}
+    public void setPocetenDatum(LocalDate pocetenDatum) {
+        this.pocetenDatum = pocetenDatum;
+    }
 
-	public String getKraenDatum() {
-		return this.kraenDatum;
-	}
+    public List<LigaSezona> getLigaSoSezoni() {
+        return ligaSoSezoni;
+    }
 
-	public void setKraenDatum(String kraenDatum) {
-		this.kraenDatum = kraenDatum;
-	}
+    public List<StatistikaNaIgrach> getStatistikaNaIgrachi() {
+        return statistikaNaIgrachi;
+    }
 
-	public String getPocetenDatum() {
-		return this.pocetenDatum;
-	}
-
-	public void setPocetenDatum(String pocetenDatum) {
-		this.pocetenDatum = pocetenDatum;
-	}
-
-	public List<Finale> getFinales() {
-		return this.finales;
-	}
-
-	public void setFinales(List<Finale> finales) {
-		this.finales = finales;
-	}
-
-	public Finale addFinale(Finale finale) {
-		getFinales().add(finale);
-		finale.setSezona(this);
-
-		return finale;
-	}
-
-	public Finale removeFinale(Finale finale) {
-		getFinales().remove(finale);
-		finale.setSezona(null);
-
-		return finale;
-	}
-
-	public Liga getLiga1() {
-		return this.liga1;
-	}
-
-	public void setLiga1(Liga liga1) {
-		this.liga1 = liga1;
-	}
-
-	public Liga getLiga2() {
-		return this.liga2;
-	}
-
-	public void setLiga2(Liga liga2) {
-		this.liga2 = liga2;
-	}
-
-	public List<Utakmica> getUtakmicas() {
-		return this.utakmicas;
-	}
-
-	public void setUtakmicas(List<Utakmica> utakmicas) {
-		this.utakmicas = utakmicas;
-	}
-
-	public Utakmica addUtakmica(Utakmica utakmica) {
-		getUtakmicas().add(utakmica);
-		utakmica.setSezona(this);
-
-		return utakmica;
-	}
-
-	public Utakmica removeUtakmica(Utakmica utakmica) {
-		getUtakmicas().remove(utakmica);
-		utakmica.setSezona(null);
-
-		return utakmica;
-	}
+    public List<StatistikaNaTim> getStatistikaNaTimovi() {
+        return statistikaNaTimovi;
+    }
 
 }

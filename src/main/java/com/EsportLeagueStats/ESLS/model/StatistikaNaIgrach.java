@@ -1,142 +1,144 @@
 package com.EsportLeagueStats.ESLS.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Entity
-@Table(name="statistika_na_igrach")
-public class StatistikaNaIgrach implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(schema = "project", name = "statistika_na_igrach")
+public class StatistikaNaIgrach {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer iid;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private Integer kda;
+    @Column(name = "kda")
+    private Integer kda;
 
-	private Integer nadigruvanja;
+    @Column(name = "nadigruvanja")
+    private Integer nadigruvanja;
 
-	@Column(name="napravena_steta")
-	private Integer napravenaSteta;
+    @Column(name = "napravena_steta")
+    private Integer napravenaSteta;
 
-	@Column(name="poeni_vo_10_min")
-	private Integer poeniVo10Min;
+    @Column(name = "poeni_vo_10_min")
+    private Integer poeniVo10Min;
 
-	@Column(name="primena_steta")
-	private Integer primenaSteta;
+    @Column(name = "primena_steta")
+    private Integer primenaSteta;
 
-	@Column(name="prinudeni_greski")
-	private Integer prinudeniGreski;
+    @Column(name = "prinudeni_greski")
+    private Integer prinudeniGreski;
 
-	@Column(name="prisustvo_na_soigrachi")
-	private Integer prisustvoNaSoigrachi;
+    @Column(name = "prisustvo_na_soigrachi")
+    private Integer prisustvoNaSoigrachi;
 
-	@Column(name="prisustvo_na_vardovi")
-	private Integer prisustvoNaVardovi;
+    @Column(name = "prisustvo_na_vardovi")
+    private Integer prisustvoNaVardovi;
 
+    @ManyToOne
+    @JoinColumn(name = "igrach_id")
+    private Players igrach;
 
-	@OneToOne
-	@JsonIgnore
-	@JoinColumn(name="iid")
-	private StatistikaNaIgrach statistikaNaIgrach1;
+    @ManyToOne
+    @JoinColumn(name = "sezona_id")
+    private Sezona sezona;
 
-	//bi-directional one-to-one association to StatistikaNaIgrach
-	@JsonIgnore
-	@OneToOne(mappedBy="statistikaNaIgrach1")
-	private StatistikaNaIgrach statistikaNaIgrach2;
+    public StatistikaNaIgrach(Integer kda, Integer nadigruvanja, Integer napravenaSteta, Integer poeniVo10Min, Integer primenaSteta, Integer prinudeniGreski, Integer prisustvoNaSoigrachi, Integer prisustvoNaVardovi, Players igrach, Sezona sezona) {
+        this.kda = kda;
+        this.nadigruvanja = nadigruvanja;
+        this.napravenaSteta = napravenaSteta;
+        this.poeniVo10Min = poeniVo10Min;
+        this.primenaSteta = primenaSteta;
+        this.prinudeniGreski = prinudeniGreski;
+        this.prisustvoNaSoigrachi = prisustvoNaSoigrachi;
+        this.prisustvoNaVardovi = prisustvoNaVardovi;
+        this.igrach = igrach;
+        this.sezona = sezona;
+    }
 
-	public StatistikaNaIgrach() {
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public Integer getIid() {
-		return this.iid;
-	}
+    public Integer getKda() {
+        return kda;
+    }
 
-	public void setIid(Integer iid) {
-		this.iid = iid;
-	}
+    public void setKda(Integer kda) {
+        this.kda = kda;
+    }
 
-	public Integer getKda() {
-		return this.kda;
-	}
+    public Integer getNadigruvanja() {
+        return nadigruvanja;
+    }
 
-	public void setKda(Integer kda) {
-		this.kda = kda;
-	}
+    public void setNadigruvanja(Integer nadigruvanja) {
+        this.nadigruvanja = nadigruvanja;
+    }
 
-	public Integer getNadigruvanja() {
-		return this.nadigruvanja;
-	}
+    public Integer getNapravenaSteta() {
+        return napravenaSteta;
+    }
 
-	public void setNadigruvanja(Integer nadigruvanja) {
-		this.nadigruvanja = nadigruvanja;
-	}
+    public void setNapravenaSteta(Integer napravenaSteta) {
+        this.napravenaSteta = napravenaSteta;
+    }
 
-	public Integer getNapravenaSteta() {
-		return this.napravenaSteta;
-	}
+    public Integer getPoeniVo10Min() {
+        return poeniVo10Min;
+    }
 
-	public void setNapravenaSteta(Integer napravenaSteta) {
-		this.napravenaSteta = napravenaSteta;
-	}
+    public void setPoeniVo10Min(Integer poeniVo10Min) {
+        this.poeniVo10Min = poeniVo10Min;
+    }
 
-	public Integer getPoeniVo10Min() {
-		return this.poeniVo10Min;
-	}
+    public Integer getPrimenaSteta() {
+        return primenaSteta;
+    }
 
-	public void setPoeniVo10Min(Integer poeniVo10Min) {
-		this.poeniVo10Min = poeniVo10Min;
-	}
+    public void setPrimenaSteta(Integer primenaSteta) {
+        this.primenaSteta = primenaSteta;
+    }
 
-	public Integer getPrimenaSteta() {
-		return this.primenaSteta;
-	}
+    public Integer getPrinudeniGreski() {
+        return prinudeniGreski;
+    }
 
-	public void setPrimenaSteta(Integer primenaSteta) {
-		this.primenaSteta = primenaSteta;
-	}
+    public void setPrinudeniGreski(Integer prinudeniGreski) {
+        this.prinudeniGreski = prinudeniGreski;
+    }
 
-	public Integer getPrinudeniGreski() {
-		return this.prinudeniGreski;
-	}
+    public Integer getPrisustvoNaSoigrachi() {
+        return prisustvoNaSoigrachi;
+    }
 
-	public void setPrinudeniGreski(Integer prinudeniGreski) {
-		this.prinudeniGreski = prinudeniGreski;
-	}
+    public void setPrisustvoNaSoigrachi(Integer prisustvoNaSoigrachi) {
+        this.prisustvoNaSoigrachi = prisustvoNaSoigrachi;
+    }
 
-	public Integer getPrisustvoNaSoigrachi() {
-		return this.prisustvoNaSoigrachi;
-	}
+    public Integer getPrisustvoNaVardovi() {
+        return prisustvoNaVardovi;
+    }
 
-	public void setPrisustvoNaSoigrachi(Integer prisustvoNaSoigrachi) {
-		this.prisustvoNaSoigrachi = prisustvoNaSoigrachi;
-	}
+    public void setPrisustvoNaVardovi(Integer prisustvoNaVardovi) {
+        this.prisustvoNaVardovi = prisustvoNaVardovi;
+    }
 
-	public Integer getPrisustvoNaVardovi() {
-		return this.prisustvoNaVardovi;
-	}
+    public Players getIgrach() {
+        return igrach;
+    }
 
-	public void setPrisustvoNaVardovi(Integer prisustvoNaVardovi) {
-		this.prisustvoNaVardovi = prisustvoNaVardovi;
-	}
+    public void setIgrach(Players igrach) {
+        this.igrach = igrach;
+    }
 
-	public StatistikaNaIgrach getStatistikaNaIgrach1() {
-		return this.statistikaNaIgrach1;
-	}
+    public Sezona getSezona() {
+        return sezona;
+    }
 
-	public void setStatistikaNaIgrach1(StatistikaNaIgrach statistikaNaIgrach1) {
-		this.statistikaNaIgrach1 = statistikaNaIgrach1;
-	}
-
-	public StatistikaNaIgrach getStatistikaNaIgrach2() {
-		return this.statistikaNaIgrach2;
-	}
-
-	public void setStatistikaNaIgrach2(StatistikaNaIgrach statistikaNaIgrach2) {
-		this.statistikaNaIgrach2 = statistikaNaIgrach2;
-	}
-
+    public void setSezona(Sezona sezona) {
+        this.sezona = sezona;
+    }
 }

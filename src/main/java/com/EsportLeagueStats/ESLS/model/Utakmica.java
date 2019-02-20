@@ -1,128 +1,78 @@
 package com.EsportLeagueStats.ESLS.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
-
-/**
- * The persistent class for the utakmica database table.
- * 
- */
 @Entity
-public class Utakmica implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(schema = "project", name = "utakmica")
+public class Utakmica {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer uid;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer uid;
 
-	private String pobednik;
+    @Column(name = "finale")
+    private boolean finale;
 
-	@Column(name="vreme_traenje")
-	private String vremeTraenje;
+    @ManyToOne
+    @JoinColumn(name = "pobednik")
+    private Tim pobednik;
 
-	//bi-directional many-to-one association to Finale
-	@JsonIgnore
-	@OneToMany(mappedBy="utakmica")
-	private List<Finale> finales;
+    @ManyToOne
+    @JoinColumn(name = "gubitnik")
+    private Tim gubitnik;
 
-	//bi-directional many-to-one association to Igraat
+    @ManyToOne
+    @JoinColumn(name = "liga_sezona")
+    private LigaSezona sezona;
 
-	@OneToMany(mappedBy="utakmica")
-	private List<Igraat> igraats;
+    public Utakmica() {
+    }
 
-	//bi-directional many-to-one association to Sezona
-	@ManyToOne
-	@JoinColumn(name="seid")
-	private Sezona sezona;
+    public Utakmica(Tim pobednik, Tim gubitnik, LigaSezona sezona, boolean finale) {
+        this.pobednik = pobednik;
+        this.gubitnik = gubitnik;
+        this.sezona = sezona;
+        this.finale = finale;
+    }
 
-	public Utakmica() {
-	}
+    public Integer getUid() {
+        return uid;
+    }
 
-	public Utakmica(String pobednik, String vremeTraenje, Sezona sezona) {
-		this.pobednik = pobednik;
-		this.vremeTraenje = vremeTraenje;
-		this.sezona = sezona;
-	}
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
-	public Integer getUid() {
-		return this.uid;
-	}
+    public boolean isFinale() {
+        return finale;
+    }
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
+    public void setFinale(boolean finale) {
+        this.finale = finale;
+    }
 
-	public String getPobednik() {
-		return this.pobednik;
-	}
+    public Tim getPobednik() {
+        return pobednik;
+    }
 
-	public void setPobednik(String pobednik) {
-		this.pobednik = pobednik;
-	}
+    public void setPobednik(Tim pobednik) {
+        this.pobednik = pobednik;
+    }
 
-	public String getVremeTraenje() {
-		return this.vremeTraenje;
-	}
+    public Tim getGubitnik() {
+        return gubitnik;
+    }
 
-	public void setVremeTraenje(String vremeTraenje) {
-		this.vremeTraenje = vremeTraenje;
-	}
+    public void setGubitnik(Tim gubitnik) {
+        this.gubitnik = gubitnik;
+    }
 
+    public LigaSezona getSezona() {
+        return sezona;
+    }
 
-	public List<Finale> getFinales() {
-		return this.finales;
-	}
-
-	public void setFinales(List<Finale> finales) {
-		this.finales = finales;
-	}
-
-	public Finale addFinale(Finale finale) {
-		getFinales().add(finale);
-		finale.setUtakmica(this);
-
-		return finale;
-	}
-
-	public Finale removeFinale(Finale finale) {
-		getFinales().remove(finale);
-		finale.setUtakmica(null);
-
-		return finale;
-	}
-
-	public List<Igraat> getIgraats() {
-		return this.igraats;
-	}
-
-	public void setIgraats(List<Igraat> igraats) {
-		this.igraats = igraats;
-	}
-
-	public Igraat addIgraat(Igraat igraat) {
-		getIgraats().add(igraat);
-		igraat.setUtakmica(this);
-
-		return igraat;
-	}
-
-	public Igraat removeIgraat(Igraat igraat) {
-		getIgraats().remove(igraat);
-		igraat.setUtakmica(null);
-
-		return igraat;
-	}
-
-	public Sezona getSezona() {
-		return this.sezona;
-	}
-
-	public void setSezona(Sezona sezona) {
-		this.sezona = sezona;
-	}
-
+    public void setSezona(LigaSezona sezona) {
+        this.sezona = sezona;
+    }
 }
