@@ -18,6 +18,9 @@ public class LigaSezona {
     @JoinColumn(name = "year")
     private Sezona sezona;
 
+    public LigaSezona() {
+    }
+
     public LigaSezona(Liga liga, Sezona sezona) {
         this.liga = liga;
         this.sezona = sezona;

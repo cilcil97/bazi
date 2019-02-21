@@ -1,3 +1,113 @@
-<p>
-  match-master-details works!
-</p>
+<p-dialog header="Car Details"
+          [(visible)]="displayDialog"
+          [responsive]="true"
+          showEffect="fade"
+          [modal]="true"
+          (onHide)="handle()"
+          [style]="{width: '300px'}">
+
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Pobednik</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="brand" [(ngModel)]="dialogData.pobednikIme"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Gubitnik</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="year" [(ngModel)]="dialogData.gubitnikIme"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Liga</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="mesto" [(ngModel)]="dialogData.liga"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Godina</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="vin" [(ngModel)]="dialogData.year"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Finale</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="asd" [(ngModel)]="dialogData.finale"/>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Edit"></button>
+      </div>
+    </p-footer>
+  </div>
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData === null">
+
+
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Pobednik</label>
+      </div>
+      <p-listbox [options]="teams"
+                 optionLabel="ime"
+                 [(ngModel)]="selectedWinner">
+              </p-listbox>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Gubitnik</label>
+      </div>
+      <p-listbox [options]="teams"
+                 optionLabel="ime"
+                 [(ngModel)]="selectedLooser">
+      </p-listbox>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Liga</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="c" [(ngModel)]="newData.liga"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Godina</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="d" [(ngModel)]="newData.year"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Finale</label>
+      </div>
+      <div class="ui-g-8">
+        <label for="e">True</label>
+        <input type="radio" value="true" pInputText id="e" [(ngModel)]="newData.finale"/>
+        <label for="r">False</label>
+        <input type="radio" value="false" pInputText id="r" [(ngModel)]="newData.finale"/>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Save"></button>
+      </div>
+    </p-footer>
+  </div>
+</p-dialog>

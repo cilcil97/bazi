@@ -1,6 +1,5 @@
 export interface Season {
-  seid: number,
+  year: number,
   kraenDatum: string,
-  pocetenDatum: string,
-
+  pocetenDatum: string
 }

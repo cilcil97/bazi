@@ -1,3 +1,95 @@
-<p>
-  teams-master-details works!
-</p>
+<p-dialog header="Car Details"
+          [(visible)]="displayDialog"
+          [responsive]="true"
+          showEffect="fade"
+          [modal]="true"
+          (onHide)="handle()"
+          [style]="{width: '300px'}">
+
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Id</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="vin" [(ngModel)]="dialogData.id"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Logo</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="brand" [(ngModel)]="dialogData.logo"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Ime</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="year" [(ngModel)]="dialogData.ime"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Liga</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="mesto" [(ngModel)]="dialogData.liga"/>
+      </div>
+    </div>
+
+
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Edit"></button>
+      </div>
+    </p-footer>
+  </div>
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData === null">
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Logo</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newEndYear" [(ngModel)]="newData.logo"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Ime</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newYear" [(ngModel)]="newData.ime"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="year">Ime na liga</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText id="liga" [(ngModel)]="newData.liga"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+
+      <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Save"></button>
+        </div>
+      </p-footer>
+    </div>
+  </div>
+
+
+</p-dialog>

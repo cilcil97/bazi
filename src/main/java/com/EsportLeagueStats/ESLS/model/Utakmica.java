@@ -9,7 +9,7 @@ public class Utakmica {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer uid;
+    private Integer id;
 
     @Column(name = "finale")
     private boolean finale;
@@ -36,12 +36,12 @@ public class Utakmica {
         this.finale = finale;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public boolean isFinale() {

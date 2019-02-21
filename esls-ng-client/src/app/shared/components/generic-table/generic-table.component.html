@@ -1,4 +1,4 @@
-<p-table [columns]="columns"
+<p-table [columns]="cols"
          [value]="data"
          [selectionMode]="selectionMode"
          [(selection)]="selection"
@@ -12,7 +12,7 @@
   <!--Header-->
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngFor="let col of columns"
+      <th *ngFor="let col of cols"
           [pSortableColumn]="col.field">
         {{col.header}}
 
@@ -24,7 +24,7 @@
 
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr [pSelectableRow]="rowData">
-      <td *ngFor="let col of columns">
+      <td *ngFor="let col of cols">
         {{rowData[col.field]}}
       </td>
     </tr>

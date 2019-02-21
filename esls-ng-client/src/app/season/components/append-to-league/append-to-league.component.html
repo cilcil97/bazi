@@ -1,0 +1,51 @@
+<div>
+  <p-table *ngIf="seasonWithLeagues"
+           [columns]="columnDefinition"
+           [value]="seasonWithLeagues">
+
+    <!--Caption-->
+    <ng-template pTemplate="caption">
+      {{caption}}
+    </ng-template>
+
+    <!--Header-->
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columnDefinition"
+            [pSortableColumn]="col.field">
+          {{col.header}}
+
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columnDefinition">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+</div>
+
+<div>
+  <p-listbox [options]="seasons"
+             optionLabel="year"
+             [(ngModel)]="selectedSeason">
+  </p-listbox>
+
+  <p-listbox [options]="leagues"
+             optionLabel="ime"
+             multiple="true"
+             checkbox="true"
+             [(ngModel)]="selectedLeagues">
+  </p-listbox>
+
+  <button pButton type="button" icon="fa fa-save" label="Save" (click)="save()"></button>
+
+</div>
+

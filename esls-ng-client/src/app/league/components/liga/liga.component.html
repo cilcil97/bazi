@@ -1,0 +1,48 @@
+<p-table *ngIf="leagues"
+         [columns]="columnDefinition"
+         [value]="leagues"
+         selectionMode="single"
+         [(selection)]="selection"
+         (onRowSelect)="onRowSelect($event)">
+
+  <!--Caption-->
+  <ng-template pTemplate="caption">
+    {{caption}}
+  </ng-template>
+
+  <!--Header-->
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columnDefinition"
+          [pSortableColumn]="col.field">
+        {{col.header}}
+
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columnDefinition">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+    </div>
+  </ng-template>
+
+</p-table>
+
+<app-liga-dialog [setDisplayDialog]="displayDialog"
+                   [setDialogData]="selection"
+                   [setDialogType]="dialogType"
+                   (handleClose)="handleClose()"
+                   (output)="catchRow($event)">
+
+</app-liga-dialog>

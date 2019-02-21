@@ -11,7 +11,7 @@ export class GenericTableComponent<T> implements OnInit {
   data: T[];
 
   @Input()
-  columns: ColumnDefinition[];
+  cols: ColumnDefinition[];
 
   @Input()
   selectionMode: string;

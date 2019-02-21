@@ -1,6 +1,7 @@
 package com.EsportLeagueStats.ESLS.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +20,11 @@ public class Tim {
 	@Column(name = "logo")
 	private String logo;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="liga_id")
+    @JsonIgnore
+    private Liga liga;
+
 	@OneToMany(mappedBy="tim")
 	@JsonIgnore
 	private List<MenuvaatTim> menuvaatTims;
@@ -27,17 +33,15 @@ public class Tim {
 	@OneToMany(mappedBy="tim")
 	private List<StatistikaNaTim> statistikaNaTim;
 
-	@ManyToOne
-	@JoinColumn(name="liga_id")
-	private Liga liga;
-
 	@JsonIgnore
 	@OneToMany(mappedBy = "tim")
 	private List<Formiraat> formiraat;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "gubitnik")
 	private List<Utakmica> izgubeniUtakmici;
 
+	@JsonIgnore
     @OneToMany(mappedBy = "pobednik")
     private List<Utakmica> pobedeniUtakmici;
 
@@ -120,5 +124,10 @@ public class Tim {
 
     public void setPobedeniUtakmici(List<Utakmica> pobedeniUtakmici) {
         this.pobedeniUtakmici = pobedeniUtakmici;
+    }
+
+    @JsonProperty("liga")
+    public String ligaIme(){
+	    return this.liga.getIme();
     }
 }

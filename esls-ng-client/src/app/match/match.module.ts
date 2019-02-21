@@ -1,18 +1,29 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatchMasterDetailsComponent} from './components/match-master-details/match-master-details.component';
-import {MatchesComponent} from './components/matches/matches.component';
 import {MatchListComponent} from './components/match-list/match-list.component';
-import {FinalMatchComponent} from './components/final-match/final-match.component';
 import {MatchRoutingModule} from "./match-routing.module";
+import {MatchService} from "./services/match.service";
+import {TableModule} from "primeng/table";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ButtonModule} from "primeng/button";
+import {DialogModule} from "primeng/dialog";
+import {ListboxModule} from "primeng/listbox";
 
 
 @NgModule({
-  declarations: [MatchMasterDetailsComponent, MatchesComponent, MatchListComponent, FinalMatchComponent],
+  declarations: [MatchMasterDetailsComponent, MatchListComponent],
   imports: [
     CommonModule,
-    MatchRoutingModule
-  ]
+    MatchRoutingModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    ListboxModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [MatchService]
 })
 export class MatchModule {
 

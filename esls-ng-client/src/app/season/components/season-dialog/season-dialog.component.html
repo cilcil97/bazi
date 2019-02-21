@@ -1,0 +1,80 @@
+<p-dialog header="Car Details"
+          [(visible)]="displayDialog"
+          [responsive]="true"
+          showEffect="fade"
+          [modal]="true"
+          (onHide)="handle()"
+          [style]="{width: '300px'}">
+
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Godina</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="vin" [(ngModel)]="dialogData.year"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Poceten datum</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="brand" [(ngModel)]="dialogData.pocetenDatum"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Kraen datum</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="year" [(ngModel)]="dialogData.kraenDatum"/>
+      </div>
+    </div>
+
+
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Edit"></button>
+      </div>
+    </p-footer>
+  </div>
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData === null">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Godina</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newVin" [(ngModel)]="newData.year"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Poceten datum</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newEndYear" [(ngModel)]="newData.pocetenDatum"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Kraen datum</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newYear" [(ngModel)]="newData.kraenDatum"/>
+      </div>
+    </div>
+
+
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Save"></button>
+      </div>
+    </p-footer>
+  </div>
+
+
+</p-dialog>

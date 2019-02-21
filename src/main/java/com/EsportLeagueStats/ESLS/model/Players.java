@@ -28,6 +28,7 @@ public class Players {
     private List<StatistikaNaIgrach> statistikaNaIgrachi;
 
     @OneToMany(mappedBy = "igrach")
+    @JsonIgnore
     private List<Formiraat> formiraat;
 
     @OneToMany(mappedBy = "igrach")

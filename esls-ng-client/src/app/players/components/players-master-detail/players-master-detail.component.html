@@ -1,3 +1,108 @@
-<p>
-  players-master-detail works!
-</p>
+<p-dialog header="Car Details"
+          [(visible)]="displayDialog"
+          [responsive]="true"
+          showEffect="fade"
+          [modal]="true"
+          (onHide)="handle()"
+          [style]="{width: '300px'}">
+
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Id</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="vin" [(ngModel)]="dialogData.id"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Akronim</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="brand" [(ngModel)]="dialogData.akronim"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Ime</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="year" [(ngModel)]="dialogData.ime"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Drzhava</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="mesto" [(ngModel)]="dialogData.drzava"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Pozicija</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="pozicija" [(ngModel)]="dialogData.pozicija"/>
+      </div>
+    </div>
+
+
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Edit"></button>
+      </div>
+    </p-footer>
+  </div>
+
+  <div class="ui-g ui-fluid" *ngIf="dialogData === null">
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Akronim</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newEndYear" [(ngModel)]="newData.akronim"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Ime</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newYear" [(ngModel)]="newData.ime"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Drzhava</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newMesto" [(ngModel)]="newData.drzhava"/>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">Pozicija</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="newPozicija" [(ngModel)]="newData.pozicija"/>
+      </div>
+    </div>
+
+
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="onSaveClick()" label="Save"></button>
+      </div>
+    </p-footer>
+  </div>
+
+
+</p-dialog>

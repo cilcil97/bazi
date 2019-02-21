@@ -77,7 +77,7 @@ CREATE TABLE project.menuvaat_tim
 
 CREATE TABLE project.liga_sezona
 (
-  id      INTEGER PRIMARY KEY,
+  id      SERIAL PRIMARY KEY,
   liga_id INTEGER REFERENCES project.liga (id),
   year    INTEGER REFERENCES project.sezona (year),
   CONSTRAINT "UNIQUE_LIGA_SEZONA" UNIQUE (liga_id, year)

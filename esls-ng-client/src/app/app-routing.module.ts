@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {MatchModule} from "./match/match.module";
 import {PlayersModule} from "./players/players.module";
 import {TeamsModule} from "./teams/teams.module";
+import {LeagueModule} from "./league/league.module";
+import {SeasonModule} from "./season/season.module";
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'teams',
     loadChildren: () => TeamsModule
+  },
+  {
+    path: 'leagues',
+    loadChildren: () => LeagueModule
+  },
+  {
+    path: 'season',
+    loadChildren: () => SeasonModule
   }
 ];
 

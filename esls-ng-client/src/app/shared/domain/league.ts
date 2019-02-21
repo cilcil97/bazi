@@ -1,6 +1,6 @@
 export interface League {
-  lid: number,
-  lKontinent: string,
-  lime: string,
+  id: number,
+  kontinent: string,
+  ime: string,
   mestoNaOdrzuvanje: string
 }
